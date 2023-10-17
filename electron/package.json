@@ -1,0 +1,61 @@
+{
+  "name": "@songbird/electron",
+  "version": "0.0.1",
+  "description": "A fast, desktop software development framework",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder",
+    "dev-frontend": "ee-bin dev --serve=frontend",
+    "dev-electron": "ee-bin dev --serve=electron",
+    "build-frontend": "ee-bin build",
+    "start": "ee-bin start",
+    "rd": "ee-bin rd",
+    "encrypt": "ee-bin encrypt",
+    "clean": "ee-bin clean",
+    "icon": "ee-bin icon",
+    "reload": "nodemon --config config/nodemon.json",
+    "rebuild": "electron-rebuild",
+    "re-sqlite": "electron-rebuild -f -w better-sqlite3",
+    "build-w": "electron-builder --config=./src/config/builder.json -w=nsis --x64",
+    "build-w-32": "electron-builder --config=./src/config/builder.json -w=nsis --ia32",
+    "build-w-64": "electron-builder --config=./src/config/builder.json -w=nsis --x64",
+    "build-w-arm64": "electron-builder --config=./src/config/builder.json -w=nsis --arm64",
+    "build-wz": "electron-builder --config=./src/config/builder.json -w=7z --x64",
+    "build-wz-32": "electron-builder --config=./src/config/builder.json -w=7z --ia32",
+    "build-wz-64": "electron-builder --config=./src/config/builder.json -w=7z --x64",
+    "build-wz-arm64": "electron-builder --config=./src/config/builder.json -w=7z --arm64",
+    "build-m": "electron-builder --config=./src/config/builder.json -m",
+    "build-m-arm64": "electron-builder --config=./src/config/builder.json -m --arm64",
+    "build-l": "electron-builder --config=./src/config/builder.json -l=deb --x64",
+    "build-l-32": "electron-builder --config=./src/config/builder.json -l=deb --ia32",
+    "build-l-64": "electron-builder --config=./src/config/builder.json -l=deb --x64",
+    "build-l-arm64": "electron-builder --config=./src/config/builder.json -l=deb --arm64",
+    "build-l-armv7l": "electron-builder --config=./src/config/builder.json -l=deb --armv7l",
+    "build-lr-64": "electron-builder --config=./src/config/builder.json -l=rpm --x64",
+    "build-lp-64": "electron-builder --config=./src/config/builder.json -l=pacman --x64",
+    "test": "set DEBUG=* && electron  --env=local"
+  },
+  "repository": "https://github.com/dromara/electron-egg.git",
+  "keywords": [
+    "Electron",
+    "electron-egg",
+    "ElectronEgg"
+  ],
+  "author": "Hylarucoder <twocucao@gmail.com>",
+  "license": "Apache",
+  "devDependencies": {
+    "@electron/rebuild": "^3.3.0",
+    "debug": "^4.3.4",
+    "ee-bin": "^1.2.0",
+    "electron": "^26.2.2",
+    "electron-builder": "^24.6.4",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "ee-core": "^2.5.0",
+    "electron-updater": "^6.1.4",
+    "lodash": "^4.17.21"
+  }
+}
