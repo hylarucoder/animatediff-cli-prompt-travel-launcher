@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     "nuxt-electron",
     "@ant-design-vue/nuxt",
   ],
-  electron: {
+  build: {
     transpile: process.env.NODE_ENV === "production"
       ? [
         "naive-ui",
@@ -12,6 +12,8 @@ export default defineNuxtConfig({
         "@css-render/vue3-ssr",
         "@juggle/resize-observer",
       ] : ["@juggle/resize-observer"],
+  },
+  electron: {
     build: [
       {
         // Main-Process entry file of the Electron App.

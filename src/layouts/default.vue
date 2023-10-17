@@ -1,113 +1,58 @@
-<template>
-  <div class="flex justify-center items-center text-zinc-700 text-sm"
-       style="height: var(--nav-header-height); -webkit-app-region: drag">
-    Animatediff
-  </div>
-  <a-layout id="app-layout-sider">
-    <a-layout-sider v-model="collapsed" theme="light" class="layout-sider" width="100">
-      <div class="logo">
-        <img class="pic-logo" src="../assets/logo.png" />
-      </div>
-      <a-menu class="menu-item" theme="light" mode="inline" :selectedKeys="[current]" @click="menuHandle">
-        <a-menu-item v-for="(menuInfo, index) in menu" :key="index">
-          <icon-font :type="menuInfo.icon" />
-          {{ menuInfo.title }}
-        </a-menu-item>
-      </a-menu>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-content class="layout-content">
-        <slot />
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
-</template>
 <script lang="ts" setup>
-const collapsed = ref(true)
-const current = ref("menu_1")
-const menu = ref({
-  menu_1: {
-    icon: "icon-fengche",
-    title: "框架",
-    pageName: "/framework",
-    params: {
-      // test: 'hello'
-    },
-  },
-  menu_2: {
-    icon: "icon-niudan",
-    title: "系统",
-    pageName: "/os",
-    params: {},
-  },
-  menu_3: {
-    icon: "icon-xiangji",
-    title: "硬件",
-    pageName: "/hardware",
-    params: {},
-  },
-  menu_4: {
-    icon: "icon-liuxing",
-    title: "特效",
-    pageName: "/effect",
-    params: {},
-  },
-  menu_5: {
-    icon: "icon-liuxing",
-    title: "图片",
-    pageName: "/image",
-    params: {},
-  },
-})
-const router = useRouter()
-const menuHandle = (e) => {
-  console.log("sider menu e:", e)
-  current.value = e ? e.key : current.value
-  console.log("sider menu current:", current.value)
+import { NConfigProvider, enUS, dateEnUS, darkTheme } from "naive-ui"
+import type { GlobalTheme } from "naive-ui"
 
-  const linkInfo = menu.value[current.value]
-  console.log("[home] load linkInfo:", linkInfo)
-  router.push(linkInfo.pageName)
-}
-const changeMenu = (e) => {
-  console.log("sider menu e:", e)
-  //this.current = e.key;
-}
-// onMounted(() => {
-//   menuHandle()
-// })
+const theme = ref<GlobalTheme | null>(null)
 </script>
-<style lang="less" scoped>
-// 嵌套
-#app-layout-sider {
-  height: calc(100vh - var(--nav-header-height));
+<template>
+  <n-config-provider
 
-  .logo {
-    border-bottom: 1px solid #e8e8e8;
-  }
+    :theme="theme"
+    :locale="enUS" :date-locale="dateEnUS">
+    <n-message-provider>
+      <div class="flex justify-center items-center select-none text-zinc-700 text-sm bg-amber-300"
+           style="height: var(--nav-header-height); -webkit-app-region: drag">
+        Animatediff Cli Prompt Travel Launcher
+      </div>
+      <div class="flex h-screen">
 
-  .pic-logo {
-    height: 32px;
-    //background: rgba(139, 137, 137, 0.2);
-    margin: 10px;
-  }
-
-  .layout-sider {
-    border-top: 1px solid #e8e8e8;
-    border-right: 1px solid #e8e8e8;
-  }
-
-  .menu-item {
-    .ant-menu-item {
-      background-color: #fff;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      padding: 0 0px !important;
-    }
-  }
-
-  .layout-content {
-    //background-color: #fff;
-  }
-}
-</style>
+        <!-- Sidebar -->
+        <div class="bg-gray-500 text-white w-20 flex flex-col items-center">
+          <!-- Your logo here -->
+          <div class="my-4">
+            <i class="fas fa-hashtag text-4xl"></i>
+          </div>
+          <!-- Sidebar buttons -->
+          <div>
+            <nuxt-link to="/">
+              <button class="my-2 w-14 h-14 rounded-full focus:outline-none focus:ring">
+                <i class="fas fa-home">Launch</i>
+              </button>
+            </nuxt-link>
+            <nuxt-link to="/t2v">
+              <button class="my-2 w-14 h-14 rounded-full focus:outline-none focus:ring">
+                <i class="fas fa-home">t2v</i>
+              </button>
+            </nuxt-link>
+            <nuxt-link to="/v2v">
+              <button class="my-2 w-14 h-14 rounded-full focus:outline-none focus:ring">
+                <i class="fas fa-home">v2v</i>
+              </button>
+            </nuxt-link>
+          </div>
+        </div>
+        <div class="border-gray-400" style="height: calc(100vh - var(--nav-header-height));">
+          <n-space>
+            <n-button @click="theme = darkTheme">
+              Dark
+            </n-button>
+            <n-button @click="theme = null">
+              Light
+            </n-button>
+          </n-space>
+          <slot />
+        </div>
+      </div>
+    </n-message-provider>
+  </n-config-provider>
+</template>
