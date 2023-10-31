@@ -1,1 +1,0 @@
-import{_ as t,n,w as o,q as c,o as _,a}from"./entry.978b97f1.js";const s={},r=a("p",null,"effect",-1);function f(u,l){const e=c;return _(),n(e,null,{default:o(()=>[r]),_:1})}const p=t(s,[["render",f]]);export{p as default};
