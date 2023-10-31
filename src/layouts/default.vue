@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { NConfigProvider, enUS, dateEnUS, darkTheme } from "naive-ui"
+import { NConfigProvider, enUS, dateEnUS,
+  NMessageProvider,
+  darkTheme } from "naive-ui"
 import type { GlobalTheme } from "naive-ui"
 
 const theme = ref<GlobalTheme | null>(null)
@@ -7,12 +9,6 @@ const theme = ref<GlobalTheme | null>(null)
 <template>
   <n-config-provider :theme="theme" :locale="enUS" :date-locale="dateEnUS">
     <n-message-provider>
-      <div
-        class="flex select-none items-center justify-center bg-amber-300 text-sm text-zinc-700"
-        style="height: var(--nav-header-height); -webkit-app-region: drag"
-      >
-        Animatediff Cli Prompt Travel Launcher
-      </div>
       <div class="flex h-screen">
         <!-- Sidebar -->
         <div class="flex w-20 flex-col items-center bg-gray-500 text-white">
@@ -37,13 +33,18 @@ const theme = ref<GlobalTheme | null>(null)
                 <i class="fas fa-home">v2v</i>
               </button>
             </nuxt-link>
+            <nuxt-link to="/status">
+              <button class="my-2 h-14 w-14 rounded-full focus:outline-none focus:ring">
+                <i class="fas fa-home">Status</i>
+              </button>
+            </nuxt-link>
           </div>
         </div>
         <div class="border-gray-400" style="height: calc(100vh - var(--nav-header-height))">
-          <n-space>
-            <n-button @click="theme = darkTheme"> Dark</n-button>
-            <n-button @click="theme = null"> Light</n-button>
-          </n-space>
+          <!--          <n-space>-->
+          <!--            <n-button @click="theme = darkTheme"> Dark</n-button>-->
+          <!--            <n-button @click="theme = null"> Light</n-button>-->
+          <!--          </n-space>-->
           <slot />
         </div>
       </div>
